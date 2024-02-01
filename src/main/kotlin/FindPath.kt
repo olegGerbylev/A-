@@ -17,7 +17,7 @@ class FindPath (field: Array<IntArray>,
                     field[i][j] = -1
                 }
                 if (field[i][j] == 0 || field[i][j] == 3){
-                    field[i][j] = Int.MAX_VALUE
+                    field[i][j] = 0
                 }
             }
         }
@@ -75,9 +75,9 @@ class FindPath (field: Array<IntArray>,
     private fun takeNeighbor(previousPath: Path,row: Int, col: Int): Path?{
         var path: Path? = null
         if ((row >= 0 && col >= 0) && (row < field.size && col < field[0].size)){
-            if (field[row][col]>=0 && field[row][col] > previousPath.step+1){
+            if (field[row][col]>=0 && field[row][col] !=2){
                 path = Path(row,col,distanceToGoal(row,col), previousPath.step+1,previousPath)
-                field[row][col] = previousPath.step+1
+                field[row][col] = 2
             }
         }
         return path
